@@ -1,0 +1,64 @@
+---
+title: "Final_project"
+author: "Weixing Li"
+date: "2024-11-17"
+output: html_document
+
+---
+# Introduction
+This report analyzes a dataset on student performance factors, aiming to understand the relationship between various factors like exam scores, study hours, attendance, and sleep hours.The dataset"StudentPerformanceFactors.csv" includes the factors mentioned(exam scores:integer.study hours:integer.attendance:integer.sleep hours:integer). The goal is to identify which factors significantly impact student performance and to provide descriptive insights into the data.  
+```{r, here-i-am, include = FALSE}
+#setwd("D:\\550\\final project")
+here::i_am("report.Rmd")
+```
+#summary statistics
+Below arethe summary statistics of some variables in the dataset.
+```{r, table1, include = FALSE}
+data1<- readRDS(file = here::here("output/data1.rds"))
+library(labelled)
+library(gtsummary)
+summary_table <- data1 |>
+  select(Exam_Score, Hours_Studied, Attendance, Sleep_Hours) |>
+  tbl_summary(include = c(Exam_Score, Hours_Studied, Attendance, Sleep_Hours))
+
+
+print(summary_table)
+
+```
+The table above summarizes the main characteristics of the dataset, including exam scores, study hours, attendance, and sleep hours.
+
+- **Exam Score**: The median score is 67, with a range between 65 and 69. This indicates that most students have similar performance in their exams.
+- **Study Hours**: The median study time is 20 hours, with a range between 16 and 24 hours. This suggests that the majority of students dedicate between 16 to 24 hours to studying.
+- **Attendance**: The median attendance rate is 80%, with values ranging from 70% to 90%. This reflects good attendance among most students.
+- **Sleep Hours**: The distribution of sleep hours shows that most students sleep between 6 to 8 hours per day. Specifically:
+  - 4 hours: 309 students (4.7%)
+  - 5 hours: 695 students (11%)
+  - 6 hours: 1,376 students (21%)
+  - 7 hours: 1,741 students (26%)
+  - 8 hours: 1,399 students (21%)
+  - 9 hours: 775 students (12%)
+  - 10 hours: 312 students (4.7%)
+
+This breakdown provides an overview of the sleep habits of the students, with most getting between 6 to 8 hours of sleep, which is considered within the healthy range.
+```{r scatter-plot, fig.width=6, fig.height=4}
+# Scatter plot of Hours Studied vs Exam Score
+
+knitr::include_graphics(here::here("output/scatter_plot.png"))
+```
+The plot above shows a positive relationship between hours studied and exam scores, indicating that students who study more tend to achieve higher scores.
+
+#linear model 
+I fit a linear model to understand the effect of different factors on exam scores.
+```{r,fit_model}
+fit_model<-readRDS(file = here::here("output", "lm_model.rds"))
+summary(fit_model)
+```
+In this model, study hours and attendance stastically significantly affact student performance, while sleep hours doesn't.
+## Residual Plot
+
+The following residual plot is used to assess the fit of the linear model.
+
+```{r residual-plot, fig.width=6, fig.height=4}
+# Residual plot
+knitr::include_graphics(here::here("output/residual_plot.png"))
+```
