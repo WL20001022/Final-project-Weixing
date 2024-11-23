@@ -1,3 +1,4 @@
+here::i_am("report.Rmd")
 data <- read.csv(
   file = here::here("dataset","StudentPerformanceFactors.csv"))
 head(data)

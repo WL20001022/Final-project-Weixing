@@ -1,4 +1,4 @@
-here::i_am("report.Rmd")
+here::i_am("code/create_plot.R")
 
 data <- read.csv(
   file = here::here("dataset","StudentPerformanceFactors.csv"))
