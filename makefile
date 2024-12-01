@@ -8,6 +8,9 @@ output/data1.rds: code/data1.R dataset/studentPerformanceFactors.csv
 output/lm_model.rds: code/lm_model.R	dataset/StudentPerformanceFactors.csv
 	Rscript	code/lm_model.R
 
+install:
+	-Rscript	-e"renv::restore()"
+
 
 output/scatter_plot.png: code/create_plot.R	dataset/StudentPerformanceFactors.csv	output/lm_model.rds
 	Rscript	code/create_plot.R
