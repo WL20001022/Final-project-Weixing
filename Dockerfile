@@ -40,6 +40,6 @@ EXPOSE 8787
 
 ENV PASSWORD=rstudio
 
-CMD ["sh", "-c", "make install && make report.html && mv report.html /home/rstudio/project/report"]
+CMD ["make","report.html"]
 
 

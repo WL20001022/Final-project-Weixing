@@ -4,18 +4,12 @@ docker-build:
 	docker build -t weixing1022/my-rstudio-image .
 
 .PHONY: docker-run
-docker-run:
+docker run -v "/$$(pwd)"/report:/project/report weixing1022/my-rstudio-image
 	@echo "Running the Docker container with an empty report directory"
 	# Ensure the report directory is empty before running
 	mkdir -p report
 	# Run the Docker container and mount the empty report directory
-	docker run --rm \
-	-v "$(PWD)/report:/home/rstudio/project/report" \
-	-v "$(PWD)/output:/home/rstudio/project/output" \
-	-v "$(PWD)/dataset:/home/rstudio/project/dataset" \
-	-p 8787:8787 weixing1022/my-rstudio-image \
-	Rscript -e "rmarkdown::render(input = '/home/rstudio/project/report.Rmd', output_file = '/home/rstudio/project/report/report.html')"
-
+	docker run -v"/$$(pdw)"/
 # Install dependencies (this is the missing install step)
 .PHONY: install
 install:
