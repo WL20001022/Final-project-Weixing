@@ -16,6 +16,12 @@ docker-run:
 	-p 8787:8787 weixing1022/my-rstudio-image \
 	Rscript -e "rmarkdown::render(input = '/home/rstudio/project/report.Rmd', output_file = '/home/rstudio/project/report/report.html')"
 
+# Install dependencies (this is the missing install step)
+.PHONY: install
+install:
+	@echo "Restoring R environment from renv.lock"
+	Rscript -e "renv::restore()"
+
 # Generate data1.rds file
 output/data1.rds: code/data1.R dataset/StudentPerformanceFactors.csv
 	Rscript code/data1.R
@@ -32,8 +38,10 @@ output/scatter_plot.png: code/create_plot.R dataset/StudentPerformanceFactors.cs
 output/residual_plot.png: code/residual_plot.R dataset/StudentPerformanceFactors.csv output/lm_model.rds
 	Rscript code/residual_plot.R
 
+# Generate report.html
 report.html: output/data1.rds output/lm_model.rds output/scatter_plot.png output/residual_plot.png report.Rmd
 	Rscript -e "rmarkdown::render(input = 'report.Rmd', output_file = 'report.html')"
+
 # Clean up or remove any generated files if needed
 clean:
 	rm -rf output/*
