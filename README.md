@@ -1,48 +1,57 @@
-This report analyzes a dataset on student performance factors, aiming to understand the relationship between various factors like exam scores, study hours, attendance, and sleep hours.The dataset"StudentPerformanceFactors.csv" includes the factors mentioned(exam scores:integer.study hours:integer.attendance:integer.sleep hours:integer). The goal is to identify which factors significantly impact student performance and to provide descriptive insights into the data.
 
-CODE STRUCTURE
+# Project: Student Performance Factors Analysis
 
-code/data1 :
-reads in the raw dataset and creat a dataset for table1
+## Overview
 
-code/create_plot.R
-create a scatter plot shows a  relationship between hours studied and exam scores
-save the plot as scatter_plot in output/ folder
+This report analyzes a dataset on student performance factors, aiming to understand the relationship between various factors like exam scores, study hours, attendance, and sleep hours. The dataset `"StudentPerformanceFactors.csv"` includes the following factors:
+- Exam scores (integer)
+- Study hours (integer)
+- Attendance (integer)
+- Sleep hours (integer)
 
-code/lm_model.R
-fit a lm model to understand the effect of different factors on exam scores. and save it as lm_model.rds in output/folder
+The goal is to identify which factors significantly impact student performance and provide descriptive insights into the data.
+
+## Project Directory Structure
+
+- **code**: Contains R scripts for data processing, modeling, and plot generation.
+- **dataset**: Contains the raw data (`StudentPerformanceFactors.csv`).
+- **output**: Contains the generated files (e.g., models, plots, and the final report).
+- **renv**: Contains the environment configuration for package dependencies.
+- **report.Rmd**: The Rmarkdown file to generate the final report.
+
+## How to Set Up the Project
+
+### Step 1: Clone the Repository
+
+First, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/WL20001022/Final-project-Weixing.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd Final-project-Weixing
+```
+
+### Step 2: Build the Docker Image
+
+build the Docker image:
+
+```bash
+make docker-build
+```
+
+This command will build the Docker image 
+
+### Step 3: Run the Docker Container
+
+To generate the report using the Docker container, execute the following command:
+
+```bash
+make docker-run
+```
 
 
-code/residual_plot.R
-create residual plot to see the performance of lm model
-save the plot as residual_plot in output/ folder
 
-report.Rmd
-produce the final report
-The Makefile, Rmarkdown (report.Rmd), and HTML report will be in the root directory of the project. The Rmarkdown will contain the tables and figures produced in the analysis.
-
-
-How to Restore the R Environment
-To restore the R environment, follow these steps:
-
-Clone the Repository
-Clone this repository to your local machine using Git
-bash
-'git clone <your-repository-url>'
-
-Navigate to the Project Directory
-Change to the directory where the project is located:
-bash
-'cd <project-directory>'
-
-
-
-Run make install to Restore the Environment
-Use the make install command to restore the R environment from the renv.lock file:
-bash
-'make install'
-This command will execute the renv::restore() function and install all required packages.
-
-
-To build the Docker image, use make docker-build
-To generate the report and retrieve the output, use make docker-run
