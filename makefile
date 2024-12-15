@@ -1,7 +1,7 @@
 
 
 
-output/data1.rds: code/data1.R dataset/studentPerformanceFactors.csv
+output/data1.rds: code/data1.R dataset/StudentPerformanceFactors.csv
 	Rscript code/data1.R
 
 
@@ -21,4 +21,4 @@ output/residual_plot.png: code/residual_plot.R dataset/StudentPerformanceFactors
 
 
 report.html: output/data1.rds output/lm_model.rds output/scatter_plot.png output/residual_plot.png report.Rmd
-	Rscript -e "rmarkdown::render(input = 'report.Rmd', output_file = 'report.html', output_dir = 'D:/550/final project')"
+	Rscript -e "rmarkdown::render(input = 'report.Rmd', output_file = 'report.html')"
