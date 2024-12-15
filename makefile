@@ -42,6 +42,3 @@ output/residual_plot.png: code/residual_plot.R dataset/StudentPerformanceFactors
 report.html: output/data1.rds output/lm_model.rds output/scatter_plot.png output/residual_plot.png report.Rmd
 	Rscript -e "rmarkdown::render(input = 'report.Rmd', output_file = 'report.html')"
 
-# Clean up or remove any generated files if needed
-clean:
-	rm -rf output/*
