@@ -40,4 +40,5 @@ EXPOSE 8787
 
 ENV PASSWORD=rstudio
 
-CMD ["/init"]
+CMD ["make", "install"]
+
