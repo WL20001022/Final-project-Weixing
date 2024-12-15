@@ -62,3 +62,11 @@ The following residual plot is used to assess the fit of the linear model.
 # Residual plot
 knitr::include_graphics(here::here("output/residual_plot.png"))
 ```
+
+
+```{r,renv,include=FALSE}
+install.packages("renv") 
+library(renv)
+renv::init()
+
+```
