@@ -4,7 +4,7 @@ docker-build:
 	docker build -t weixing1022/my-rstudio-image .
 
 .PHONY: docker-run
-docker run -v "/$$(pwd)"/report:/project/report weixing1022/my-rstudio-image
+docker-run -v "/$$(pwd)"/report:/project/report weixing1022/my-rstudio-image
 	@echo "Running the Docker container with an empty report directory"
 	# Ensure the report directory is empty before running
 	mkdir -p report
