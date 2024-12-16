@@ -42,4 +42,3 @@ ENV PASSWORD=rstudio
 
 CMD ["make","report.html"]
 
-

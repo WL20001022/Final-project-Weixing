@@ -1,15 +1,10 @@
-.PHONY: docker-build
+
 docker-build:
 	@echo "Building Docker image"
 	docker build -t weixing1022/my-rstudio-image .
 
-.PHONY: docker-run
-docker-run -v "/$$(pwd)"/report:/project/report weixing1022/my-rstudio-image
-	@echo "Running the Docker container with an empty report directory"
-	# Ensure the report directory is empty before running
-	mkdir -p report
-	# Run the Docker container and mount the empty report directory
-	docker run -v"/$$(pdw)"/
+docker-run:
+	docker run -v "/$$(pwd)"/report:/home/rstudio/project/report weixing1022/my-rstudio-image
 # Install dependencies (this is the missing install step)
 .PHONY: install
 install:
@@ -34,5 +29,6 @@ output/residual_plot.png: code/residual_plot.R dataset/StudentPerformanceFactors
 
 # Generate report.html
 report.html: output/data1.rds output/lm_model.rds output/scatter_plot.png output/residual_plot.png report.Rmd
-	Rscript -e "rmarkdown::render(input = 'report.Rmd', output_file = 'report.html')"
+	Rscript -e "rmarkdown::render('report.Rmd', output_file = 'report/report.html')"
+
 
